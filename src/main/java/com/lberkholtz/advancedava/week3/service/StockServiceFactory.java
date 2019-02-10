@@ -1,4 +1,4 @@
-package com.lberkholtz.AdvancedJava;
+package com.lberkholtz.advancedava.week3.service;
 
 /**
  * Returns a concrete implementation of the
@@ -13,7 +13,7 @@ public class StockServiceFactory{
 
     public StockService getStockService(String stockServiceType) {
 
-        if (stockServiceType.equalsIgnoreCase("Basic"))
+        if (stockServiceType.equalsIgnoreCase("basic"))
             return new BasicStockService();
         else
             return null;
