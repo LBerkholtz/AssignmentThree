@@ -1,4 +1,4 @@
-package com.lberkholtz.advancedava.week3;
+package com.lberkholtz.advancedava.week3.service;
 
 
 import com.lberkholtz.advancedava.week3.service.BasicStockService;

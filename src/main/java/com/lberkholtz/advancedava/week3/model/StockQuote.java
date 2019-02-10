@@ -1,52 +1,96 @@
-package com.lberkholtz.AdvancedJava.week3.model;
+package com.lberkholtz.advancedava.week3.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+/**
+ *
+ */
+
 public class StockQuote {
     private String stockSymbol;
-    private Date fromDate;
-    private Date toDate;
-    private Collection<BigDecimal> stockPrice = new ArrayList<BigDecimal>();
+    private Date date;
+    private BigDecimal stockPrice;
 
-    public StockQuote(String stockSymbol, Date fromDate, Date toDate, Collection<BigDecimal> stockPrice) {
+    /**
+     * no arg constructor
+     */
+
+    public StockQuote() {
+    }
+
+    /**
+     *
+     * @param stockSymbol
+     * @param date
+     * @param stockPrice
+     */
+    public StockQuote(String stockSymbol, Date date, BigDecimal stockPrice) {
         this.stockSymbol = stockSymbol;
-        this.fromDate = fromDate;
-        this.toDate = toDate;
+        this.date = date;
         this.stockPrice = stockPrice;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getStockSymbol() {
         return stockSymbol;
     }
 
+    /**
+     *
+     * @param stockSymbol
+     */
     public void setStockSymbol(String stockSymbol) {
         this.stockSymbol = stockSymbol;
     }
 
-    public Date getFromDate() {
-        return fromDate;
+    /**
+     *
+     * @return
+     */
+
+    public Date getDate() {
+        return date;
     }
 
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+    /**
+     *
+     * @param date
+     */
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Date getToDate() {
-        return toDate;
-    }
+    /**
+     *
+     * @return
+     */
 
-    public void setToDate(Date toDate) {
-        this.toDate = toDate;
-    }
-
-    public Collection<BigDecimal> getStockPrice() {
+    public BigDecimal getStockPrice() {
         return stockPrice;
     }
 
-    public void setStockPrice(Collection<BigDecimal> stockPrice) {
+    /**
+     *
+     * @param stockPrice
+     */
+
+    public void setStockPrice(BigDecimal stockPrice) {
         this.stockPrice = stockPrice;
+    }
+
+    @Override
+    public String  toString() {
+        return "StockQuote{" +
+                "stockSymbol='" + stockSymbol + '\'' +
+                ", date=" + date +
+                ", stockPrice=" + stockPrice +
+                '}';
     }
 }

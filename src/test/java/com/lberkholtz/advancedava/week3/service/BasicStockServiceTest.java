@@ -1,17 +1,22 @@
-package com.lberkholtz.advancedava.week3;
+package com.lberkholtz.advancedava.week3.service;
 
 import com.lberkholtz.advancedava.week3.model.StockQuote;
 import com.lberkholtz.advancedava.week3.service.BasicStockService;
 import com.lberkholtz.advancedava.week3.service.StockService;
 import com.lberkholtz.advancedava.week3.service.StockServiceFactory;
 
+import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.* ;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -21,10 +26,10 @@ public class BasicStockServiceTest {
 
 
     /**
-     *
+     * Rigorous Test
      */
-
-    public void testBasicStockService() {
+    @Test
+    public void testGetQuote1() {
         StockQuote stockquote = new StockQuote();
         StockServiceFactory stockservicefactory = new StockServiceFactory();
         StockService basicstockservice = stockservicefactory.getStockService("Basic");
@@ -32,32 +37,40 @@ public class BasicStockServiceTest {
         stockquote = basicstockservice.getQuote("APPL");
         assertTrue("verify Stock Symbol", stockquote.getStockSymbol() == "APPL");
         assertTrue("verify stock price", stockquote.getStockPrice().equals(price));
+
     }
 
-    /* next we want to 'mock' the external dependency which is the StockQuote
-     * so that we can test just the BasicStockService class.  It will return a ‘mock’ of the of the class or interface
-     * passed to it.
+    @Test
+    /**
+     * Test the multiple stock quote method
      */
+    public void testGetQuote2() {
+        StockServiceFactory stockservicefactory = new StockServiceFactory();
+        StockService basicstockservice = stockservicefactory.getStockService("Basic");
+        String startdate = "2018-01-01";  // Start date
+        SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar from = Calendar.getInstance();
+        try {
+            from.setTime(simpledateformat.parse(startdate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String enddate = "2018-01-10";  // End date
+        Calendar until = Calendar.getInstance();
+        try {
+            until.setTime(simpledateformat.parse(enddate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-    public void testBasicStockServiceMockito() {
-// first create the data we expect the service to return
-        String stockSymbol = "GOOG";
-        BigDecimal expectedPrice = new BigDecimal(100.99);
-        Date expectedDate = new Date();
-        /* next we want to 'mock' the external dependency which is the StockService
-         * so that we can test just the StockTicker class. Here is how to setup the mock
-         * using the Mockito.mock() Method. It will return a ‘mock’ of the of the class or interface
-         * passed to it.
-         */
-        BasicStockService basicStockServiceMock = Mockito.mock(BasicStockService.class);
-        // Next tell the mock service how to behave
-        when(basicStockServiceMock.getQuote(stockSymbol)).thenReturn(new StockQuote(stockSymbol, expectedPrice, expectedDate));
+        List<StockQuote> stockhistory = basicstockservice.getQuote("APPL",from,until);
+        assertEquals("verify number of quotes",10, stockhistory.size());
+    }
 
-        stockquote = basicStockServiceMock.getQuote("GOOG");
-        assertTrue(stockquote.getStockSymbol().equals(stockSymbol));
-        assertTrue(stockquote.getStockPrice().equals(expectedPrice));
+
+
     }
-    }
+
 
 
 

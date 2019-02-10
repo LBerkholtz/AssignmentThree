@@ -1,11 +1,12 @@
-package com.lberkholtz.AdvancedJava.week3.service;
+package com.lberkholtz.advancedava.week3.service;
 
-import com.lberkholtz.AdvancedJava.week3.model.StockQuote;
+import com.lberkholtz.advancedava.week3.model.StockQuote;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.math.BigInteger;
+import java.util.*;
 
-class BasicStockService implements StockService {
+public class BasicStockService implements StockService {
 private StockService stockService;
 private StockQuote stockquote;
 
@@ -34,7 +35,39 @@ public BasicStockService(StockService stockService){
         stockquote.setStockSymbol(symbol);
         stockquote.setStockPrice(new BigDecimal(100.99));
         Date date = new Date();
-        stockquote.setQuoteDate(date);
+        stockquote.setDate(date);
         return stockquote;
     }
+
+    /**
+     *
+     * @param symbol the stock symbol to search for
+     * @param from the date of the first stock quote
+     * @param until the date of the last stock quote
+     * @return
+     */
+    @Override
+    public List<StockQuote> getQuote(String symbol, Calendar from, Calendar until) {
+
+        Calendar workingdate = Calendar.getInstance();
+        workingdate = from;
+        System.out.println (from);
+        List<StockQuote> returnValue = new ArrayList<>();
+         while (workingdate.before(until) || workingdate.equals(until)) {
+            StockQuote stockquote = new StockQuote();
+            stockquote.setStockSymbol(symbol);
+            stockquote.setDate(workingdate.getTime());
+            /* generate random value for price until we get an actual stock service */
+            BigDecimal price =new BigDecimal(BigInteger.valueOf(new Random().nextInt(10001)), 2);
+            BigDecimal divisor = BigDecimal.valueOf(100.00);
+            stockquote.setStockPrice(price.divide(divisor));
+            returnValue.add(stockquote);
+
+            workingdate.add(Calendar.DAY_OF_YEAR, 1);
         }
+
+
+        return returnValue;
+    }
+
+    }
