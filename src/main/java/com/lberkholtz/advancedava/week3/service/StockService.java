@@ -1,5 +1,7 @@
 // Written by Laura Berkholtz
-package com.lberkholtz.AdvancedJava;
+package com.lberkholtz.AdvancedJava.week3.service;
+
+import com.lberkholtz.AdvancedJava.week3.model.StockQuote;
 
 /**
  * This interface describes a simple API for getting stock data.

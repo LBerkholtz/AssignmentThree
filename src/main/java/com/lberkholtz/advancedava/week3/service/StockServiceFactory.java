@@ -1,4 +1,7 @@
-package com.lberkholtz.AdvancedJava;
+package com.lberkholtz.AdvancedJava.week3.service;
+
+import com.lberkholtz.AdvancedJava.week3.service.BasicStockService;
+import com.lberkholtz.AdvancedJava.week3.service.StockService;
 
 /**
  * Returns a concrete implementation of the

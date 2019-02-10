@@ -1,9 +1,12 @@
-package com.lberkholtz.AdvancedJava;
+package com.lberkholtz.advancedava.week3;
 
-import org.junit.* ;
+import com.lberkholtz.advancedava.week3.model.StockQuote;
+import com.lberkholtz.advancedava.week3.service.BasicStockService;
+import com.lberkholtz.advancedava.week3.service.StockService;
+import com.lberkholtz.advancedava.week3.service.StockServiceFactory;
+
 import org.mockito.Mockito;
 
-import static org.hamcrest.core.IsInstanceOf.any;
 import static org.junit.Assert.* ;
 import static org.mockito.Mockito.when;
 
@@ -15,25 +18,27 @@ import java.util.Date;
  * Unit test for Stock Quote
  */
 public class BasicStockServiceTest {
-    StockQuote stockquote;
+
 
     /**
-     * Rigorous Test
+     *
      */
-    @Test
+
     public void testBasicStockService() {
-        BasicStockService bss = new BasicStockService();
+        StockQuote stockquote = new StockQuote();
+        StockServiceFactory stockservicefactory = new StockServiceFactory();
+        StockService basicstockservice = stockservicefactory.getStockService("Basic");
         BigDecimal price = new BigDecimal(100.99);
-        stockquote = bss.getQuote("APPL");
-        assertTrue(stockquote.getStockSymbol() == "APPL");
-        assertTrue(stockquote.getStockPrice().equals(price));
+        stockquote = basicstockservice.getQuote("APPL");
+        assertTrue("verify Stock Symbol", stockquote.getStockSymbol() == "APPL");
+        assertTrue("verify stock price", stockquote.getStockPrice().equals(price));
     }
 
     /* next we want to 'mock' the external dependency which is the StockQuote
      * so that we can test just the BasicStockService class.  It will return a ‘mock’ of the of the class or interface
      * passed to it.
      */
-    @Test
+
     public void testBasicStockServiceMockito() {
 // first create the data we expect the service to return
         String stockSymbol = "GOOG";

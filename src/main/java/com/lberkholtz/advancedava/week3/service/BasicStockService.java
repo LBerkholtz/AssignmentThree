@@ -1,9 +1,11 @@
-package com.lberkholtz.AdvancedJava;
+package com.lberkholtz.AdvancedJava.week3.service;
+
+import com.lberkholtz.AdvancedJava.week3.model.StockQuote;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class BasicStockService implements StockService{
+class BasicStockService implements StockService {
 private StockService stockService;
 private StockQuote stockquote;
 

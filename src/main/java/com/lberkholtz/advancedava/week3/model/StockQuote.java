@@ -1,4 +1,4 @@
-package com.lberkholtz.AdvancedJava;
+package com.lberkholtz.AdvancedJava.week3.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
