@@ -1,3 +1,7 @@
+/**
+ * @author Laura Berkholtz
+ */
+
 package com.lberkholtz.advancedava.week3.service;
 
 import com.lberkholtz.advancedava.week3.model.StockQuote;
@@ -14,10 +18,10 @@ private StockQuote stockquote;
     }
 
     /**
- * Create a new <CODE>BasicStockService</CODE> instance
- *
- * @param stockService used to get actual stock data (external dependency)
- */
+    * Create a new BasicStockService instance
+    *
+    * @param stockService used to get the stockservice
+    */
 
 public BasicStockService(StockService stockService){
         this.stockService=stockService;
@@ -40,6 +44,9 @@ public BasicStockService(StockService stockService){
     }
 
     /**
+     * Get a list of StockQuotes starting at the from date and one for each day until the
+     * until date
+     * overrides interface method
      *
      * @param symbol the stock symbol to search for
      * @param from the date of the first stock quote
@@ -53,6 +60,7 @@ public BasicStockService(StockService stockService){
         workingdate = from;
         System.out.println (from);
         List<StockQuote> returnValue = new ArrayList<>();
+
          while (workingdate.before(until) || workingdate.equals(until)) {
             StockQuote stockquote = new StockQuote();
             stockquote.setStockSymbol(symbol);

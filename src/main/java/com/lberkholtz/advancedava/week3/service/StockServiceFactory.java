@@ -1,13 +1,17 @@
+/**
+ * @author Laura Berkholtz
+ */
+
 package com.lberkholtz.advancedava.week3.service;
 
 /**
  * Returns a concrete implementation of the
- * interface depending on
+ * interface depending on the parameter passed
  */
 public class StockServiceFactory{
     /**
      * Just coding for BasicStockService now, can add more types of StockService in the future.
-     * @param stockServiceType
+     * @param stockServiceType what type of stock service is needed. For now we just have Basic
      * @return
      */
 

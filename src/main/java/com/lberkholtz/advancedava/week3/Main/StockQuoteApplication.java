@@ -1,20 +1,34 @@
+/**
+ * @author Laura Berkholtz
+ */
+
+
 package com.lberkholtz.advancedava.week3.Main;
 
 import com.lberkholtz.advancedava.week3.model.StockQuote;
 import com.lberkholtz.advancedava.week3.service.StockService;
 import com.lberkholtz.advancedava.week3.service.StockServiceFactory;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import static java.lang.System.out;
+
+/**
+ * This class gets either a single or a list of stock quotes depending on the parameters passed to it
+ * It will return a stock quote for todays date if just a symbol is passed to it
+ * If a symbol, a start date and an end date are passed it will get quotes for each day beginning
+ * at the start date and going through and including the end date.
+ */
+
+
 
 public class StockQuoteApplication {
 
     /**
-     * @param args
+     * @param args arg[0] is the symbol for the stock
+     *             arg[1] is the starting date for the list of quotes
+     *             arg[2] is the ending date for the list of quotes
      * @throws ParseException
      */
 
@@ -22,7 +36,10 @@ public class StockQuoteApplication {
 
         StockService stockservice = new StockServiceFactory().getStockService("basic");
 
-
+    /**
+    * Check args length and if there is only one, pass only the symbol to the getQuote method
+     * Otherwise send all args to stock quote and get a list of quotes
+    */
         if (args.length == 1) {
             StockQuote singlestockquote = stockservice.getQuote(args[0]);
             System.out.println(singlestockquote.toString());
@@ -32,8 +49,8 @@ public class StockQuoteApplication {
             String fromDate = args[1];
             String untilDate = args[2];
 
-            SimpleDateFormat startdateformat = new SimpleDateFormat("MM/dd/yyyy");
-            SimpleDateFormat enddateformat = new SimpleDateFormat("MM/dd/yyyy");
+            SimpleDateFormat startdateformat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat enddateformat = new SimpleDateFormat("yyyy-MM-dd");
 
             Calendar startDate = Calendar.getInstance();
             Calendar endDate = Calendar.getInstance();
@@ -43,7 +60,7 @@ public class StockQuoteApplication {
                 startDate.setTime(startdateformat.parse(fromDate));
                 endDate.setTime(enddateformat.parse(untilDate));
 
-            } catch (ParseException e) {
+                } catch (ParseException e) {
 
                 e.printStackTrace();
 

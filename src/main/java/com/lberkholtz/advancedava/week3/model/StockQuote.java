@@ -1,3 +1,7 @@
+/**
+ * @author Laura Berkholtz
+ */
+
 package com.lberkholtz.advancedava.week3.model;
 
 import java.math.BigDecimal;
@@ -6,13 +10,14 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
+ * Container class stockquote
  *
  */
 
 public class StockQuote {
-    private String stockSymbol;
-    private Date date;
-    private BigDecimal stockPrice;
+    private String stockSymbol;//the string symbol for the stock
+    private Date date; //the date of the quote
+    private BigDecimal stockPrice;  //the price of the stock
 
     /**
      * no arg constructor
@@ -22,6 +27,7 @@ public class StockQuote {
     }
 
     /**
+     * Returns a stock quote
      *
      * @param stockSymbol
      * @param date
@@ -35,7 +41,7 @@ public class StockQuote {
 
     /**
      *
-     * @return
+     * @return stocksymbol
      */
     public String getStockSymbol() {
         return stockSymbol;
@@ -51,7 +57,7 @@ public class StockQuote {
 
     /**
      *
-     * @return
+     * @return date
      */
 
     public Date getDate() {
@@ -69,7 +75,7 @@ public class StockQuote {
 
     /**
      *
-     * @return
+     * @return stockPrice
      */
 
     public BigDecimal getStockPrice() {

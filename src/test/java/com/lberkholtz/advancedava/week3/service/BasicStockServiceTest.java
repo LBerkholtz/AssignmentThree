@@ -1,3 +1,8 @@
+/**
+ * @author Laura Berkholtz
+ */
+
+
 package com.lberkholtz.advancedava.week3.service;
 
 import com.lberkholtz.advancedava.week3.model.StockQuote;
@@ -6,10 +11,9 @@ import com.lberkholtz.advancedava.week3.service.StockService;
 import com.lberkholtz.advancedava.week3.service.StockServiceFactory;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.* ;
-import static org.mockito.Mockito.when;
+
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -26,7 +30,7 @@ public class BasicStockServiceTest {
 
 
     /**
-     * Rigorous Test
+     * Test GetQuote method with a single parameter
      */
     @Test
     public void testGetQuote1() {
@@ -42,7 +46,7 @@ public class BasicStockServiceTest {
 
     @Test
     /**
-     * Test the multiple stock quote method
+     * Test the stockQuote method with from and until dates
      */
     public void testGetQuote2() {
         StockServiceFactory stockservicefactory = new StockServiceFactory();
