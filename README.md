@@ -1,2 +1,2 @@
-# AssignmentTwo
-Assignment Three for Advanced Java UML Spring 2019
+# Factory Service Pattern Stock Quote Application
+Maven, JUnit, CircleCi
