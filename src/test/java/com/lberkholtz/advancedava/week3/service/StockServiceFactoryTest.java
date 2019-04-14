@@ -1,3 +1,8 @@
+/**
+ * @author Laura Berkholtz
+ */
+
+
 package com.lberkholtz.advancedava.week3.service;
 
 
@@ -18,7 +23,7 @@ public class StockServiceFactoryTest{
     StockServiceFactory stockservicefactory = new StockServiceFactory();
 
     /**
-     * Rigorous Test
+     * Test StockService method to see if it passes correctly
      */
     @Test
     public void testGetStockService() {
